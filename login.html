@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login System</title>
+
+    <style>
+        body{
+            background-image: url("https://pics.craiyon.com/2023-07-07/67036f9556e14bd8b79914d44e1977d5.webp");
+            background-size:cover;
+            background-position:center;
+            background-color: #0c0b0b;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .square{
+            width: 400px;
+            background-color:transparent;
+            color: #f8f4f6ff;
+            padding: 40px;
+            margin-top: 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .square label{
+            font-size: 14px;
+            font-weight: bold;
+            color:white;
+        }
+
+        .square input{
+            border-radius: 20px;
+            padding: 20px;
+            width:90%;
+            outline:none;
+            margin-bottom: 15px;
+        }
+
+        .square button{
+            font-size: 20px;
+            background-color: white;
+            border-radius: 20px;
+            padding:20px;
+            cursor:pointer;
+            transition: 0.3s ease;
+            margin: 10px auto 0 auto;
+            display:block;
+        }
+
+        .square button:hover{
+            background-color: #4f96f1ff;
+        }
+
+        .error{
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="square">
+        <h2>Login</h2>
+
+        <!-- FORM -->
+        <form id="loginForm">
+
+            <label>Username:</label><br><br>
+            <input type="text" id="loginUsername" placeholder="Username">
+
+            <label>Password:</label><br><br>
+            <input type="password" id="loginPassword" placeholder="Password">
+
+            <div class="error" id="errorMsg"></div>
+
+            <button type="submit">Login</button>
+
+        </form>
+
+        <h3><a href="index.html">Forget password</a></h3>
+        <h3><a href="index.html">New user</a></h3>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const errorMsg = document.getElementById("errorMsg");
+
+        loginForm.addEventListener("submit", function(e){
+            e.preventDefault(); // stop auto redirect
+
+            const username = document.getElementById("loginUsername").value.trim();
+            const password = document.getElementById("loginPassword").value;
+
+            // Empty check
+            if(username === "" || password === ""){
+                errorMsg.textContent = "❌ All fields are required";
+                return;
+            }
+
+            // Password length check
+            if(password.length < 6){
+                errorMsg.textContent = "❌ Password must be at least 6 characters";
+                return;
+            }
+
+            // Success
+            errorMsg.style.color = "green";
+            errorMsg.textContent = "✅ Login successful";
+
+            setTimeout(() => {
+                window.location.href = "home.html";
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>
